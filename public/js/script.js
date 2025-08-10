@@ -67,3 +67,30 @@ if(buttonLike){
   })
 }
 //button like
+
+// button favorite
+const buttonFavorite=document.querySelector("[button-favorite]")
+console.log(buttonFavorite)
+if(buttonLike){
+  buttonFavorite.addEventListener("click",()=>{
+    const idSong=buttonFavorite.getAttribute("button-favorite")
+    
+    //coi nó có active ko
+    const isActive=buttonFavorite.classList.contains("active")
+
+    const typeFavorite=isActive ? "unfavorite":"favorite"
+    const link=`/songs/favorite/${typeFavorite}/${idSong}`
+
+    const option={
+      method:'PATCH'
+    }
+    fetch(link,option)
+      .then(res=>res.json())
+      .then(data=>{
+        const span=buttonLike.querySelector("span")
+        
+        buttonFavorite.classList.toggle("active")
+      })
+  })
+}
+// button favorite

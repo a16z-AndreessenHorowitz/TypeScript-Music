@@ -174,6 +174,9 @@ height:50px;
         to { transform: rotate(360deg); }
     }
 
+     .singer-detail .inner-like {
+      cursor: pointer;
+     }
     .singer-detail .inner-like i {
       color:blue;
     }
@@ -181,6 +184,19 @@ height:50px;
       color:blue;
     }
     .singer-detail .inner-like.active i{
+      font-weight: 900;
+    }
+
+    .singer-detail .inner-heart{
+      cursor: pointer;
+    }
+    .singer-detail .inner-heart i{
+      color: red;
+    }
+    .singer-detail .inner-heart.active{
+      color: red;
+    }
+    .singer-detail .inner-heart.active i{
       font-weight: 900;
     }
 /* End singer-detail */
