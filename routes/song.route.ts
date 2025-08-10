@@ -6,4 +6,6 @@ route.get(`/:slugTopic`,controller.list)
 
 route.get(`/detail/:slugSong`,controller.detail)
 
+route.patch(`/like/:typeLike/:idSong`,controller.like)
+
 export const songRoutes:Router=route

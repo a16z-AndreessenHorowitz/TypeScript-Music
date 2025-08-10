@@ -32,7 +32,7 @@ export const list = async (req: Request, res: Response): Promise<void> => {
     songs:songs
   })
 }
-
+// {GET} /detail/:slugSong 
 export const detail = async (req: Request, res: Response): Promise<void> => {
   const slugSong: string= req.params.slugSong
 
@@ -60,5 +60,32 @@ export const detail = async (req: Request, res: Response): Promise<void> => {
   song:song,
   singer:singer,
   topic:topic
+  })
+}
+// {PATCH} /songs/like/:typeLike/:idSong
+export const like = async (req: Request, res: Response): Promise<void> => {
+  const idSong:string =req.params.idSong 
+
+  const typeLike:string=req.params.typeLike
+
+
+
+  const song=await Song.findOne({
+    _id:idSong,
+    status:"active",
+    deleted:false
+  })
+  //mục đích newLike là đưa nó ra giao diện cho thằng front-end
+  const newLike:number = typeLike=="like" ? song.like+1 : song.like-1
+  //update lại bài hát
+  await Song.updateOne({
+    _id:idSong,
+  },{
+    like: newLike
+  })
+  res.json({
+    code:200,
+    message:"Thành công",
+    like:newLike
   })
 }

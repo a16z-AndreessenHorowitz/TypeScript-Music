@@ -133,7 +133,7 @@ height:50px;
         animation-duration: 12s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-
+        animation-play-state: paused;
     }
     /* .inner-avatar img {
         width: 100%;
@@ -174,5 +174,13 @@ height:50px;
         to { transform: rotate(360deg); }
     }
 
-
+    .singer-detail .inner-like i {
+      color:blue;
+    }
+    .singer-detail .inner-like.active{
+      color:blue;
+    }
+    .singer-detail .inner-like.active i{
+      font-weight: 900;
+    }
 /* End singer-detail */
