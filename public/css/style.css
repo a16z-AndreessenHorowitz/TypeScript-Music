@@ -187,16 +187,26 @@ height:50px;
       font-weight: 900;
     }
 
-    .singer-detail .inner-heart{
+    .inner-heart{
       cursor: pointer;
     }
     .singer-detail .inner-heart i{
       color: red;
     }
-    .singer-detail .inner-heart.active{
+    .singer-detail.active{
       color: red;
     }
     .singer-detail .inner-heart.active i{
       font-weight: 900;
+    }
+    
+    .song-item .inner-heart i{
+      color: red;
+    }
+    .song-item.active{
+      color: red;
+    }
+    .song-item .inner-heart.active i{
+      font-weight: 600;
     }
 /* End singer-detail */
