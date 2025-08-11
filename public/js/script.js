@@ -71,7 +71,7 @@ if(buttonLike){
 // button favorite
 const buttonFavorite=document.querySelector("[button-favorite]")
 console.log(buttonFavorite)
-if(buttonLike){
+if(buttonFavorite){
   buttonFavorite.addEventListener("click",()=>{
     const idSong=buttonFavorite.getAttribute("button-favorite")
     
@@ -86,9 +86,7 @@ if(buttonLike){
     }
     fetch(link,option)
       .then(res=>res.json())
-      .then(data=>{
-        const span=buttonLike.querySelector("span")
-        
+      .then(data=>{        
         buttonFavorite.classList.toggle("active")
       })
   })
