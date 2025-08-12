@@ -2,9 +2,12 @@ import { Response,Request } from "express"
 import Song from "../models/song.model";
 import Singer from "../models/singer.model";
 import { convertToSlug } from "../helpers/convertToSlug";
+import { title } from "process";
 
-// {GET} /search/result
+// {GET} /search/:type
 export const result= async (req:Request, res:Response) :Promise<void> =>{
+
+  const type=req.params.type
   const keyword:string =`${req.query.keyword}`
   
   let newSongs=[];
@@ -27,14 +30,44 @@ export const result= async (req:Request, res:Response) :Promise<void> =>{
       const infoSinger=await Singer.findOne({
         _id:item.singerId,
       })
-      item["infoSinger"]=infoSinger
+      //làm như này cx dc nhưng mà front-end ko nhận dc nên chúng ta làm hẳn object
+      // item["infoSinger"]=infoSinger 
+      // newSongs=songs
+      newSongs.push({
+        id:item.id,
+        title:item.title,
+        avatar:item.avatar,
+        like:item.like,
+        slug:item.slug,
+        infoSinger:{
+          fullName:infoSinger.fullName
+        }
+      })
     }
-    newSongs=songs
+    
   }
 
-  res.render("client/pages/search/result",{
-    pageTitle:"Kết quả tìm kiếm",
-    keyword:keyword,
-    songs:newSongs
-  })
+ 
+  switch(type){
+     case "result":
+       res.render("client/pages/search/result",{
+        pageTitle:"Kết quả tìm kiếm",
+        keyword:keyword,
+        songs:newSongs
+      })
+      break;
+      case "suggest":
+        res.json({
+          code:200,
+          message:"Thành công",
+          songs:newSongs
+        })
+        break;
+      default:
+        res.json({
+          code:400,
+          message:"Lỗi",
+        })
+        break;
+  }
 }
