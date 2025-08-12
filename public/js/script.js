@@ -34,8 +34,23 @@ if (aplayer) {
   ap.on('pause', function () {
     avatar.style.animationPlayState = "paused";
   });
-  //DOM CSS (thẻ . style . tên thuộc tính viết theo Camel Case)
 
+  //DOM CSS (thẻ . style . tên thuộc tính viết theo Camel Case)
+  ap.on('ended', function () {
+      // console.log(dataSong._id)
+    const link = `/songs/listen/${dataSong._id}`
+
+    const option = {
+      method: 'PATCH'
+    }
+    fetch(link, option)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        const elementListenSpan=document.querySelector(".singer-detail .inner-listen span")
+        elementListenSpan.innerHTML=`${data.listen} lượt nghe `
+      })
+  });
 }
 
 // Aplayer

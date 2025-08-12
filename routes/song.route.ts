@@ -9,4 +9,7 @@ route.get(`/detail/:slugSong`,controller.detail)
 route.patch(`/like/:typeLike/:idSong`,controller.like)
 
 route.patch(`/favorite/:typeFavorite/:idSong`,controller.favorite)
+
+route.patch(`/listen/:idSong`,controller.listen)
+
 export const songRoutes:Router=route
