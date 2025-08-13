@@ -18,9 +18,18 @@
   app.set('views', path.join(__dirname, 'views')); // thêm path.join
   app.set('view engine', 'pug')
 
+  //time cme
+  app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+  //time cme
+  
+  //biến globals
+  import { systemConfig } from './config/system';
+  app.locals.prefixAdmin=systemConfig.prefixAdmin
   //Routes
   import clientRoutes from './routes/index.route';
   clientRoutes(app)
+  import { adminRoutes } from './routes/admin/index.route';
+  adminRoutes(app)
 
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

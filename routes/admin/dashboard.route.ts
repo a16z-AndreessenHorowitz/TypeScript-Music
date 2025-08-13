@@ -1,0 +1,8 @@
+import { Router } from "express";
+
+const route:Router=Router();
+import * as controller from "../../controllers/admin/dashboard.controller"
+
+route.get("/",controller.index)
+
+export const DashBoardRoute:Router=route
