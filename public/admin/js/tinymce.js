@@ -1,6 +1,8 @@
 tinymce.init({
   selector: 'textarea',
-  plugins: 'lists link image table code help wordcount',
+  license_key: 'gpl',
+  plugins: 'lists link image table code help wordcount'
+});
 
   file_picker_callback: (cb, value, meta) => {
     const input = document.createElement('input');
@@ -32,5 +34,3 @@ tinymce.init({
     input.click();
   }
 
-  
-});

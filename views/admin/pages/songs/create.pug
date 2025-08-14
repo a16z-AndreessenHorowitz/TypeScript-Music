@@ -1,0 +1,71 @@
+extends ../layouts/default.pug 
+block main
+  h1(class="mb-4") #{pageTitle}
+
+  form(action=`/${prefixAdmin}/songs/create` method="POST" enctype="multipart/form-data")
+    .form-group
+        label(for="title") Tiêu đề
+        input#title.form-control(type="text" name="title" required)
+
+    .form-group
+        label(for="topic") Chủ đề
+        select#topic.form-control(name="topicId" required)
+          option(value="" disabled selected) -- Chọn chủ đề --
+          each item in topics
+            option(value=item.id) #{item.title}
+          
+
+    .form-group
+        label(for="singer") Ca sĩ
+        select#singer.form-control(name="singerId" required)
+            option(value="" disabled selected) -- Chọn ca sĩ --
+            each item in singers
+              option(value=item.id) #{item.fullName}
+
+    div.form-group(upload-image)
+      label(for="avatar") Ảnh
+      input(
+        type="file"
+        class="form-control-file"
+        id="avatar"
+        name="avatar"
+        accept="image/*"
+        upload-image-input
+      )
+      img(
+        src=""
+        class="image-preview"
+        upload-image-review
+      )
+      button.hidden(type="button" button-close-image) X
+
+
+    .form-group
+        label(for="desc") Mô tả
+        textarea#desc.form-control.textarea-mce(
+            type="text"
+            name="description"
+            rows="5"
+        )
+
+    .form-group.form-check.form-check-inline
+        input#statusActive.form-check-input(
+            type="radio" 
+            name="status" 
+            value="active" 
+            checked
+        )
+        label.form-check-label(for="statusActive") Hoạt động
+
+    .form-group.form-check.form-check-inline
+        input#statusInactive.form-check-input(
+            type="radio" 
+            name="status" 
+            value="inactive"
+        )
+        label.form-check-label(for="statusInactive") Dừng hoạt động
+    div(class="form-group")
+      button(
+        type="submit"
+        class="btn btn-primary"
+      ) Tạo mới

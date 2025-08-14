@@ -53,3 +53,25 @@ html, body {
   flex-grow: 1;
   padding: 20px;
 }
+
+/* ảnh review  */
+.image-preview {
+  width: 150px;
+  height: auto;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* Ẩn ảnh khi chưa có src */
+.image-preview[src=""] {
+  display: none;  
+}
+
+/* Ẩn các element có class hidden */
+.hidden {
+  display: none;
+}
+
+/* ảnh review  */
