@@ -1,6 +1,6 @@
   import express, { Application, Request, Response } from 'express';
   import path from 'path';
-  
+
   //env
   import dotenv from 'dotenv';
   dotenv.config();
@@ -18,6 +18,9 @@
   app.set('views', path.join(__dirname, 'views')); // thêm path.join
   app.set('view engine', 'pug')
 
+  //body-parser
+  import bodyParser from 'body-parser';
+  app.use(bodyParser.urlencoded({extended:false}))
   //time cme
   app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
   //time cme
