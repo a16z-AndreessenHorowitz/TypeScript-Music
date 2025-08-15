@@ -36,13 +36,22 @@ export const create= async (req:Request, res:Response):Promise<void>=>{
 
 // {GET}/admin/create
 export const createPost = async (req:Request, res:Response):Promise<void>=>{
+  let avatar="";
+  if(req.body.avatar){
+    avatar=req.body.avatar[0]//uploadFields là 1 mảng nên lấy phần tử đầu
+  }
+  let audio="";
+  if(req.body.audio){
+    audio=req.body.audio[0]//uploadFields là 1 mảng nên lấy phần tử đầu
+  }
   const dataSong={
     title: req.body.title,
     topicId: req.body.topicId,
     singerId: req.body.singerId,
     description: req.body.description,
     status: req.body.status,
-    avatar: req.body.avatar
+    audio:audio,
+    avatar:avatar , 
   }
   const song=new Song(dataSong)
   await song.save()

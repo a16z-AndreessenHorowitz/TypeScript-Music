@@ -9,9 +9,14 @@ route.get("/", controller.index)
 
 route.get("/create", controller.create)
 route.post("/create", 
-  upload.single("avatar"), 
-  uploadCloud.uploadSingle,
+  upload.fields([
+    { name: 'avatar', maxCount: 1 }, 
+    { name: 'audio', maxCount: 1 }
+  ]),
+  uploadCloud.uploadFields, //upload nó dưới dạng 1 mảng
   controller.createPost
 )
+
+
 
 export const SongRoutes: Router = route

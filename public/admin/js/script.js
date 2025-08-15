@@ -22,3 +22,36 @@ if(uploadImage){
 
 }
 //Upload Image
+
+// Upload Audio
+const uploadAudio = document.querySelector("[upload-audio]")
+if (uploadAudio) {
+  const uploadAudioInput = document.querySelector("[upload-audio-input]")
+  const uploadAudioReview = document.querySelector("[upload-audio-review]")
+  const buttonCloseAudio = document.querySelector("[button-close-audio]")
+
+  // Ẩn control lúc đầu
+  uploadAudioReview.removeAttribute("controls")
+
+  uploadAudioInput.addEventListener("change", (e) => {
+    const audio = e.target.files[0]
+
+    if (audio) {
+      // Gán file vào audio preview
+      uploadAudioReview.src = URL.createObjectURL(audio)
+
+      // Hiện control để nghe thử
+      uploadAudioReview.setAttribute("controls", "")
+
+      // Hiện nút xoá
+      buttonCloseAudio.classList.remove("hidden")
+
+      buttonCloseAudio.addEventListener("click", () => {
+        uploadAudioInput.value = ""
+        uploadAudioReview.src = ""
+        uploadAudioReview.removeAttribute("controls") // Ẩn control lại
+        buttonCloseAudio.classList.add("hidden")
+      })
+    }
+  })
+}

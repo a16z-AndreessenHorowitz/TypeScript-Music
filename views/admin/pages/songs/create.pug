@@ -39,6 +39,23 @@ block main
       )
       button.hidden(type="button" button-close-image) X
 
+    //- //upload file audio
+    div(class="form-group" upload-audio)
+      lable(for="audio") File âm thanh
+      input(
+        type="file"
+        class="form-control-file"
+        id="audio"
+        name="audio"
+        accept="audio/*"
+        upload-audio-input
+      )
+      audio(
+        src=""
+        class="audio-preview"
+        upload-audio-review
+      )
+      button.hidden(type="button" button-close-audio) X
 
     .form-group
         label(for="desc") Mô tả
