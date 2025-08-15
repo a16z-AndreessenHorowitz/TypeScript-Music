@@ -51,7 +51,8 @@ export const createPost = async (req:Request, res:Response):Promise<void>=>{
     description: req.body.description,
     status: req.body.status,
     audio:audio,
-    avatar:avatar , 
+    avatar:avatar,
+    lyrics:req.body.lyrics
   }
   const song=new Song(dataSong)
   await song.save()

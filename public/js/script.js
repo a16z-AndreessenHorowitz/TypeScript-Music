@@ -14,6 +14,7 @@ if (aplayer) {
 
   const ap = new APlayer({
     container: aplayer,
+    lrcType: 1,
     autoplay: true,
     volume: 0.5,
     audio: [{
@@ -21,6 +22,12 @@ if (aplayer) {
       artist: dataSinger.fullName,
       url: dataSong.audio,
       cover: dataSong.avatar,
+      // lrc: `
+      // [00:00.00] APlayer
+      // [00:04.01] is
+      // [00:08.02] amazing
+      // `
+      lrc:dataSong.lyrics
     }]
   });
 

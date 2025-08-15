@@ -57,6 +57,16 @@ block main
       )
       button.hidden(type="button" button-close-audio) X
 
+    //- Nhập lyric 
+    div(class="form-group")
+      lable(for="lyrics") Lời bài hát
+      textarea(
+        name="lyrics"
+        row="20"
+        id="lyrics"
+        class="form-control"
+      ) 
+    
     .form-group
         label(for="desc") Mô tả
         textarea#desc.form-control.textarea-mce(

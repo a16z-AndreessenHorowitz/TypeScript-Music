@@ -168,6 +168,8 @@ height:50px;
     .singer-detail .inner-desc .inner-text {
         font-size: 14px;
         padding: 10px 15px;
+        /* hiển thị đúng như trên web */
+        white-space: pre; 
     }
     @keyframes spin {
         from { transform: rotate(0deg); }
