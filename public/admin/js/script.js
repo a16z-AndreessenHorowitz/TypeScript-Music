@@ -23,35 +23,34 @@ if(uploadImage){
 }
 //Upload Image
 
-// Upload Audio
+//upload audio
 const uploadAudio = document.querySelector("[upload-audio]")
 if (uploadAudio) {
   const uploadAudioInput = document.querySelector("[upload-audio-input]")
   const uploadAudioReview = document.querySelector("[upload-audio-review]")
   const buttonCloseAudio = document.querySelector("[button-close-audio]")
 
-  // Ẩn control lúc đầu
-  uploadAudioReview.removeAttribute("controls")
+  // Nếu chưa có src audio => ẩn controls
+  if (!uploadAudioReview.src || uploadAudioReview.src.trim() === "") {
+    uploadAudioReview.removeAttribute("controls")
+  } else {
+    // Có audio sẵn => hiện nút xoá
+    buttonCloseAudio.classList.remove("hidden")
+  }
 
   uploadAudioInput.addEventListener("change", (e) => {
-    const audio = e.target.files[0]
-
-    if (audio) {
-      // Gán file vào audio preview
-      uploadAudioReview.src = URL.createObjectURL(audio)
-
-      // Hiện control để nghe thử
+    const file = e.target.files[0]
+    if (file) {
+      uploadAudioReview.src = URL.createObjectURL(file)
       uploadAudioReview.setAttribute("controls", "")
-
-      // Hiện nút xoá
       buttonCloseAudio.classList.remove("hidden")
-
-      buttonCloseAudio.addEventListener("click", () => {
-        uploadAudioInput.value = ""
-        uploadAudioReview.src = ""
-        uploadAudioReview.removeAttribute("controls") // Ẩn control lại
-        buttonCloseAudio.classList.add("hidden")
-      })
     }
+  })
+
+  buttonCloseAudio.addEventListener("click", () => {
+    uploadAudioInput.value = ""
+    uploadAudioReview.src = ""
+    uploadAudioReview.removeAttribute("controls")
+    buttonCloseAudio.classList.add("hidden")
   })
 }

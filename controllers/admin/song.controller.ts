@@ -59,3 +59,55 @@ export const createPost = async (req:Request, res:Response):Promise<void>=>{
 
   res.redirect(`${systemConfig.prefixAdmin}/songs`)
 }
+
+// {GET}/admin/songs/edit/:id
+export const edit= async (req:Request, res:Response):Promise<void>=>{
+  const id=req.params.id
+  const song=await Song.findOne({
+    deleted:false,
+    _id:id,
+  })  
+
+  const topic=await Topic.find({
+    _id:song.topicId,
+    deleted:false
+  }).select("title")
+
+  const singer=await Singer.find({
+    _id:song.singerId,
+    deleted:false
+  }).select("fullName")
+
+
+  res.render("admin/pages/songs/edit",{
+    pageTitle:"Chỉnh sửa bài hát",
+    song:song,
+    topics:topic,
+    singers:singer
+  })
+}
+
+// {PATCH}/admin/songs/edit/:id
+export const editPatch= async (req:Request, res:Response):Promise<void>=>{
+  const id=req.params.id
+
+  const dataSong={
+    title: req.body.title,
+    topicId: req.body.topicId,
+    singerId: req.body.singerId,
+    description: req.body.description,
+    status: req.body.status,
+    lyrics:req.body.lyrics
+  }
+  // nếu có thì mới cập nhật 
+  if(req.body.avatar){
+    dataSong["avatar"]=req.body.avatar[0]
+  }
+  if(req.body.audio){
+    dataSong["audio"]=req.body.audio[0]
+  }
+  await Song.updateOne({
+    _id:id
+  },dataSong)
+  res.redirect(`${systemConfig.prefixAdmin}/songs/edit/${id}`)
+}

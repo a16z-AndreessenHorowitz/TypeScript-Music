@@ -17,6 +17,14 @@ route.post("/create",
   controller.createPost
 )
 
-
+route.get("/edit/:id", controller.edit)
+route.patch("/edit/:id", 
+  upload.fields([
+    { name: 'avatar', maxCount: 1 }, 
+    { name: 'audio', maxCount: 1 }
+  ]),
+  uploadCloud.uploadFields, //upload nó dưới dạng 1 mảng
+  controller.editPatch
+)
 
 export const SongRoutes: Router = route

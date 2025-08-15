@@ -25,6 +25,10 @@
   app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
   //time cme
   
+  // override
+  import methodOverride from "method-override"
+  app.use(methodOverride("_method"))
+
   //biến globals
   import { systemConfig } from './config/system';
   app.locals.prefixAdmin=systemConfig.prefixAdmin
